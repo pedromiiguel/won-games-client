@@ -3,7 +3,7 @@ import * as S from './styles'
 export type ButtonProps = {
   children: React.ReactNode
   size?: 'small' | 'medium' | 'large'
-  fullwidth?: boolean
+  fullWidth?: boolean
   icon?: JSX.Element
   onClick?: () => (event: React.MouseEvent<HTMLButtonElement>) => void
 }
@@ -11,11 +11,11 @@ export type ButtonProps = {
 const Button = ({
   children,
   size = 'medium',
-  fullwidth = false,
+  fullWidth = false,
   icon,
   ...props
 }: ButtonProps) => (
-  <S.Wrapper size={size} fullwidth={fullwidth} hasIcon={!!icon} {...props}>
+  <S.Wrapper size={size} fullWidth={fullWidth} hasIcon={!!icon} {...props}>
     {!!icon && icon}
     {!!children && <span>{children}</span>}
   </S.Wrapper>

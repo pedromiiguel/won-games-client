@@ -37,7 +37,7 @@ describe('<Button />', () => {
   })
 
   it('should render a fullWidth version', () => {
-    renderWithTheme(<Button fullwidth>Buy now</Button>)
+    renderWithTheme(<Button fullWidth>Buy now</Button>)
 
     expect(screen.getByRole('button', { name: /buy now/i })).toHaveStyle({
       width: '100%'

@@ -3,7 +3,7 @@ import { ButtonProps } from '.'
 
 type WrapperProps = {
   hasIcon: boolean
-} & Pick<ButtonProps, 'size' | 'fullwidth'>
+} & Pick<ButtonProps, 'size' | 'fullWidth'>
 
 const wrapperModifiers = {
   small: (theme: DefaultTheme) => css`
@@ -20,7 +20,7 @@ const wrapperModifiers = {
     font-size: ${theme.font.sizes.medium};
     padding: ${theme.spacings.xxsmall} ${theme.spacings.xlarge};
   `,
-  fullwidth: () => css`
+  fullWidth: () => css`
     width: 100%;
   `,
   withIcon: (theme: DefaultTheme) => css`
@@ -38,7 +38,7 @@ const wrapperModifiers = {
 }
 
 export const Wrapper = styled.button<WrapperProps>`
-  ${({ theme, size, fullwidth, hasIcon }) => css`
+  ${({ theme, size, fullWidth, hasIcon }) => css`
     background: linear-gradient(180deg, #ff5f5f 0%, #f062c0 50%);
     color: ${theme.colors.white};
     border: none;
@@ -47,7 +47,7 @@ export const Wrapper = styled.button<WrapperProps>`
     padding: ${theme.spacings.xxsmall};
 
     ${!!size && wrapperModifiers[size](theme)};
-    ${!!fullwidth && wrapperModifiers.fullwidth};
+    ${!!fullWidth && wrapperModifiers.fullWidth};
     ${!!hasIcon && wrapperModifiers.withIcon(theme)};
   `}
 `
