@@ -36,6 +36,11 @@ export const ImageBox = styled.div`
     #f6f7f8 100%
   );
 
+  img {
+    width: 100%;
+    height: 14rem;
+  }
+
   background-size: 80rem 14rem;
   animation: placeholderShimmer 1s linear infinite forwards;
 
