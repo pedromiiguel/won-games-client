@@ -28,11 +28,7 @@ exports[`<Footer /> should render 4 column topics 1`] = `
   height: 3.3rem;
 }
 
-.c0 {
-  -wrapper: .c4;
-}
-
-.c0 {
+.c0 .c4 {
   text-transform: uppercase;
 }
 
