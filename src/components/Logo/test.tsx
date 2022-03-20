@@ -4,6 +4,12 @@ import { renderWithTheme } from 'utils/tests/helpers'
 import Logo from '.'
 
 describe('<Logo />', () => {
+  it('should render a logo with id', () => {
+    const { container } = renderWithTheme(<Logo id="myId" />)
+
+    expect(container.querySelector('#paint_linear_myId')).toBeInTheDocument()
+  })
+
   it('should render a white label by default', () => {
     renderWithTheme(<Logo />)
 
