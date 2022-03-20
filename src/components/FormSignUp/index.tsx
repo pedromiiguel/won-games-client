@@ -1,7 +1,7 @@
 import Button from 'components/Button'
 import TextField from 'components/TextField'
 import Link from 'next/link'
-import { AccountCircle, Email, Lock } from 'styled-icons/material-outlined'
+import { AccountCircle, Email, Lock } from '@styled-icons/material-outlined'
 import { FormWrapper, FormLink } from 'components/Form'
 
 const FormSignUp = () => (

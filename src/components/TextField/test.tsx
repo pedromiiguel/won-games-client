@@ -1,7 +1,7 @@
 import { screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { renderWithTheme } from 'utils/tests/helpers'
-import { Email } from 'styled-icons/material-outlined'
+import { Email } from '@styled-icons/material-outlined'
 
 import TextField from '.'
 
