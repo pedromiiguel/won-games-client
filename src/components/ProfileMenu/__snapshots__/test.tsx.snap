@@ -103,7 +103,7 @@ exports[`<ProfileMenu /> should render the menu 1`] = `
   </a>
   <a
     class="c1"
-    href="/profile/card"
+    href="/profile/cards"
     title="My Cards"
   >
     <svg
@@ -183,4 +183,4 @@ exports[`<ProfileMenu /> should render the menu 1`] = `
     </span>
   </a>
 </nav>
-`
+`;
