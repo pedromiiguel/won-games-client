@@ -20,7 +20,7 @@ const ProfileMenu = ({ activeLink }: ProfileMenuProps) => (
       </S.Link>
     </Link>
 
-    <Link href="/profile/card" passHref>
+    <Link href="/profile/cards" passHref>
       <S.Link isActive={activeLink === '/profile/cards'} title="My Cards">
         <CreditCard size={24} />
         <span>My Cards</span>
