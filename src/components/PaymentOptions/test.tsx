@@ -34,7 +34,6 @@ describe('<PaymentOptions />', () => {
     renderWithTheme(
       <PaymentOptions cards={mock} handlePayment={handlePayment} />
     )
-    screen.logTestingPlaygroundURL()
 
     userEvent.click(
       screen.getByRole('button', {
