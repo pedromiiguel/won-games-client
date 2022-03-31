@@ -9,7 +9,7 @@ describe('<Menu />', () => {
 
     expect(screen.getByLabelText(/Open Menu/i)).toBeInTheDocument()
     expect(screen.getByLabelText(/Search/i)).toBeInTheDocument()
-    expect(screen.getByLabelText(/open shopping cart/i)).toBeInTheDocument()
+
     expect(screen.getByRole('img', { name: /Won Games/i })).toBeInTheDocument()
   })
 
@@ -43,10 +43,14 @@ describe('<Menu />', () => {
   it('should show wishlist and account when logged in', () => {
     renderWithTheme(<Menu username="Pedro" />)
 
-    expect(screen.queryByText(/Log in now/i)).not.toBeInTheDocument()
+    expect(screen.queryByText(/Sign in/i)).not.toBeInTheDocument()
     expect(screen.queryByText(/Sign up/i)).not.toBeInTheDocument()
 
-    expect(screen.getByText(/My account/i)).toBeInTheDocument()
-    expect(screen.getByText(/Wishlist/i)).toBeInTheDocument()
+    fireEvent.click(screen.getByLabelText(/Open Menu/i))
+
+    expect(screen.getByRole('link', { name: /Wishlist/i })).toBeInTheDocument()
+    expect(
+      screen.getByRole('link', { name: /My profile/i })
+    ).toBeInTheDocument()
   })
 })
