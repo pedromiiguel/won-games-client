@@ -34,7 +34,7 @@ const Wishlist = ({
       ) : (
         <Empty
           title="Your Wishlist is empty"
-          description="Your Wishlist is empty"
+          description="Go back to the storeand explore great games and offers"
           hasLink
         />
       )}

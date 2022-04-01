@@ -18,13 +18,6 @@ jest.mock('components/Showcase', () => ({
   }
 }))
 
-jest.mock('components/Empty', () => ({
-  __esModule: true,
-  default: function Mock() {
-    return <div data-testid="Mock Empty" />
-  }
-}))
-
 describe('<Wishlist />', () => {
   it('should render all components', () => {
     renderWithTheme(<Wishlist {...props} />)
@@ -46,6 +39,10 @@ describe('<Wishlist />', () => {
 
     expect(screen.queryByText(/population zero/i)).not.toBeInTheDocument()
 
-    expect(screen.getByTestId('Mock Empty')).toBeInTheDocument()
+    expect(
+      screen.getByText(
+        /Go back to the storeand explore great games and offers/i
+      )
+    ).toBeInTheDocument()
   })
 })
