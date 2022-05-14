@@ -10,12 +10,15 @@
     "typecheck": "tsc --project tsconfig.json --noEmit",
     "test": "jest --maxWorkers=50%",
     "test:watch": "jest --watch --maxWorkers=25%",
+    "schema:download": "apollo client:download-schema --endpoint=http://localhost:1337/graphql schema-temp.gql",
     "test:ci": "jest --runInBand",
     "generate": "yarn plop --plopfile generators/plopfile.js",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "postinstall": "husky install",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "codegen": "graphql-codegen --config codegen.yml",
+    "schema:convert": "node convertToNonNull.js"
   },
   "lint-staged": {
     "src/**/*": [
@@ -24,11 +27,13 @@
     ]
   },
   "dependencies": {
+    "@apollo/client": "^3.5.10",
     "@styled-icons/boxicons-regular": "^10.38.0",
     "@styled-icons/boxicons-solid": "^10.38.0",
     "@styled-icons/fa-brands": "^10.38.0",
     "@styled-icons/material-outlined": "^10.34.0",
     "@styled-icons/remix-fill": "^10.18.0",
+    "graphql": "^16.3.0",
     "next": "12.0.10",
     "next-pwa": "^5.3.1",
     "polished": "^4.1.4",
@@ -39,6 +44,9 @@
     "styled-media-query": "^2.1.2"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^2.6.2",
+    "@graphql-codegen/typescript-operations": "^2.3.5",
+    "@graphql-codegen/typescript-urql": "^3.5.7",
     "@storybook/addon-essentials": "6.4.17",
     "@storybook/builder-webpack5": "^6.4.17",
     "@storybook/manager-webpack5": "^6.4.17",
@@ -53,6 +61,7 @@
     "@types/styled-components": "^5.1.21",
     "@typescript-eslint/eslint-plugin": "5.10.2",
     "@typescript-eslint/parser": "5.10.2",
+    "apollo": "^2.33.10",
     "eslint": "^8.8.0",
     "eslint-config-next": "^12.0.10",
     "eslint-config-prettier": "^8.3.0",
@@ -67,6 +76,7 @@
     "prettier": "^2.4.1",
     "storybook-addon-next-router": "^3.0.8",
     "typescript": "^4.5.5",
+    "urql": "^2.2.0",
     "webpack": "5.68.0"
   }
 }

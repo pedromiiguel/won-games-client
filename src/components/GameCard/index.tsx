@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import Link from 'next/link'
 import {
   AddShoppingCart,
   FavoriteBorder,
@@ -9,13 +10,15 @@ import Button from 'components/Button'
 import Ribbon from 'components/Ribbon'
 
 import * as S from './styles'
+import formatPrice from 'utils/formatPrice'
 
 export type GameCardProps = {
+  slug: string
   title: string
   developer: string
   img: string
-  price: string
-  promotionPrice?: string
+  price: number
+  promotionPrice?: number
   favorite?: boolean
   onFav?: () => void
   ribbon?: string
@@ -24,6 +27,7 @@ export type GameCardProps = {
 }
 
 const GameCard = ({
+  slug,
   title,
   developer,
   img,
@@ -41,14 +45,20 @@ const GameCard = ({
         {ribbon}
       </Ribbon>
     )}
-    <S.ImageBox>
-      <img src={img} alt={title} />
-    </S.ImageBox>
+    <Link href={`game/${slug}`} passHref>
+      <S.ImageBox>
+        <img src={img} alt={title} />
+      </S.ImageBox>
+    </Link>
+
     <S.Content>
-      <S.Info>
-        <S.Title>{title}</S.Title>
-        <S.Developer>{developer}</S.Developer>
-      </S.Info>
+      <Link href={`game/${slug}`} passHref>
+        <S.Info>
+          <S.Title>{title}</S.Title>
+          <S.Developer>{developer}</S.Developer>
+        </S.Info>
+      </Link>
+
       <S.FavButton role="button" onClick={onFav}>
         {favorite ? (
           <Favorite aria-label="Remove from wishlist" />
@@ -57,8 +67,10 @@ const GameCard = ({
         )}
       </S.FavButton>
       <S.BuyBox>
-        {!!promotionPrice && <S.Price isPromotional>{price}</S.Price>}
-        <S.Price>{promotionPrice || price}</S.Price>
+        {!!promotionPrice && (
+          <S.Price isPromotional>{formatPrice(price)}</S.Price>
+        )}
+        <S.Price>{formatPrice(promotionPrice || price)}</S.Price>
         <Button icon={<AddShoppingCart />} size="small" />
       </S.BuyBox>
     </S.Content>
