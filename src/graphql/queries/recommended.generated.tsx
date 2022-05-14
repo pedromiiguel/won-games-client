@@ -26,6 +26,7 @@ export type RecommendedQuery = {
       } | null
       games: Array<{
         __typename?: 'Game'
+        id: string
         name: string
         slug: string
         price: number

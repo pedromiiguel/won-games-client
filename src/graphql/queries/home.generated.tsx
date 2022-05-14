@@ -31,6 +31,7 @@ export type HomeQuery = {
   }>
   newGames: Array<{
     __typename?: 'Game'
+    id: string
     name: string
     slug: string
     price: number
@@ -39,6 +40,7 @@ export type HomeQuery = {
   }>
   upcommingGames: Array<{
     __typename?: 'Game'
+    id: string
     name: string
     slug: string
     price: number
@@ -47,6 +49,7 @@ export type HomeQuery = {
   }>
   freeGames: Array<{
     __typename?: 'Game'
+    id: string
     name: string
     slug: string
     price: number
@@ -84,6 +87,7 @@ export type HomeQuery = {
       } | null
       games: Array<{
         __typename?: 'Game'
+        id: string
         name: string
         slug: string
         price: number

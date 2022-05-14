@@ -13,6 +13,7 @@ export type UpcomingQuery = {
   __typename?: 'Query'
   upcommingGames: Array<{
     __typename?: 'Game'
+    id: string
     name: string
     slug: string
     price: number

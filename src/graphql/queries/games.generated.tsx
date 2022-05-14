@@ -16,6 +16,7 @@ export type GamesQuery = {
   __typename?: 'Query'
   games: Array<{
     __typename?: 'Game'
+    id: string
     name: string
     slug: string
     price: number
@@ -36,6 +37,7 @@ export type GameBySlugQuery = {
   __typename?: 'Query'
   games: Array<{
     __typename?: 'Game'
+    id: string
     name: string
     short_description: string
     description: string
@@ -77,6 +79,7 @@ export function useGamesQuery(
 export const GameBySlugDocument = gql`
   query GameBySlug($slug: String!) {
     games(where: { slug: $slug }) {
+      id
       name
       short_description
       description

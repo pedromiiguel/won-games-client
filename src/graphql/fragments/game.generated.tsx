@@ -1,6 +1,7 @@
 import gql from 'graphql-tag'
 export type GameFragmentFragment = {
   __typename?: 'Game'
+  id: string
   name: string
   slug: string
   price: number
@@ -10,6 +11,7 @@ export type GameFragmentFragment = {
 
 export const GameFragmentFragmentDoc = gql`
   fragment GameFragment on Game {
+    id
     name
     slug
     cover {
