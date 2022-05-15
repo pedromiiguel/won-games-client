@@ -1,5 +1,8 @@
-export default function formatPrice(price: number | bigint): string {
-  if (!price) {
+export default function formatPrice(
+  price: number | bigint,
+  isTotal = false
+): string {
+  if (!price && !isTotal) {
     return 'FREE'
   }
 

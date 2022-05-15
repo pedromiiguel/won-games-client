@@ -1,7 +1,7 @@
 import { BannerFragmentFragment } from 'graphql/fragments/banner.generated'
 import { GameFragmentFragment } from 'graphql/fragments/game.generated'
 import { HighlightFragmentFragment } from 'graphql/fragments/highlight.generated'
-import { bannerMapper, highlightMapper, gamesMapper } from '.'
+import { bannerMapper, highlightMapper, gamesMapper, cartMapper } from '.'
 
 describe('bannerMapper()', () => {
   it('should return the right format when mapped', () => {
@@ -90,5 +90,29 @@ describe('highlightMapper()', () => {
       buttonLink: 'https://www.google.com',
       alignment: 'left'
     })
+  })
+})
+
+describe('cartMapper()', () => {
+  it('should return an empty array if there are no games', () => {
+    expect(cartMapper(null)).toStrictEqual([])
+  })
+
+  it('should return the cirrect format when mapped', () => {
+    const game = {
+      id: '1',
+      name: 'game',
+      cover: { url: '/image.jpg' },
+      price: 10
+    } as GameFragmentFragment
+
+    expect(cartMapper([game])).toStrictEqual([
+      {
+        id: '1',
+        title: 'game',
+        img: 'http://localhost:1337/image.jpg',
+        price: '$10.00'
+      }
+    ])
   })
 })

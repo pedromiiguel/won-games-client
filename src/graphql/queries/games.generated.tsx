@@ -6,7 +6,7 @@ import { GameFragmentFragmentDoc } from '../fragments/game.generated'
 import * as Urql from 'urql'
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
 export type GamesQueryVariables = Types.Exact<{
-  limit: Types.Scalars['Int']
+  limit?: Types.InputMaybe<Types.Scalars['Int']>
   start?: Types.InputMaybe<Types.Scalars['Int']>
   where?: Types.InputMaybe<Types.Scalars['JSON']>
   sort?: Types.InputMaybe<Types.Scalars['String']>
@@ -58,7 +58,7 @@ export type GameBySlugQuery = {
 }
 
 export const GamesDocument = gql`
-  query Games($limit: Int!, $start: Int, $where: JSON, $sort: String) {
+  query Games($limit: Int, $start: Int, $where: JSON, $sort: String) {
     games(limit: $limit, start: $start, where: $where, sort: $sort) {
       ...GameFragment
     }
@@ -72,7 +72,7 @@ export const GamesDocument = gql`
 `
 
 export function useGamesQuery(
-  options: Omit<Urql.UseQueryArgs<GamesQueryVariables>, 'query'>
+  options?: Omit<Urql.UseQueryArgs<GamesQueryVariables>, 'query'>
 ) {
   return Urql.useQuery<GamesQuery>({ query: GamesDocument, ...options })
 }

@@ -1,6 +1,7 @@
 import { BannerFragmentFragment } from 'graphql/fragments/banner.generated'
 import { GameFragmentFragment } from 'graphql/fragments/game.generated'
 import { HighlightFragmentFragment } from 'graphql/fragments/highlight.generated'
+import formatPrice from 'utils/formatPrice'
 
 export const bannerMapper = (banners: BannerFragmentFragment[]) => {
   return banners.map((banner) => ({
@@ -46,4 +47,17 @@ export const highlightMapper = (
         alignment: highlight.alignment
       }
     : {}
+}
+
+export const cartMapper = (
+  games: GameFragmentFragment[] | null | undefined
+) => {
+  return games
+    ? games.map((game) => ({
+        id: game.id,
+        img: `http://localhost:1337${game.cover?.url}`,
+        price: formatPrice(game.price),
+        title: game.name
+      }))
+    : []
 }
