@@ -20,7 +20,7 @@ describe('<CartList />', () => {
     expect(container.firstChild).toMatchSnapshot()
   })
 
-  it('should render with button', () => {
+  it('should render the button', () => {
     const cartProviderProps = {
       ...CartContextDefaultValues,
       items
@@ -34,5 +34,16 @@ describe('<CartList />', () => {
     render(<CartList />)
     expect(screen.getByText(/your cart is empty/i)).toBeInTheDocument()
     expect(screen.queryByText(/total/i)).not.toBeInTheDocument()
+  })
+
+  it('should render loading ', () => {
+    const cartProviderProps = {
+      ...CartContextDefaultValues,
+      items,
+      loading: true
+    }
+
+    render(<CartList hasButton />, { cartProviderProps })
+    expect(screen.getByTitle(/loading/i)).toBeInTheDocument()
   })
 })
