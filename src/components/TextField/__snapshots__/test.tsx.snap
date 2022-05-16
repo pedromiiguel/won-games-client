@@ -1,13 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<TextField /> renders with error 1`] = `
-.c7 {
+.c8 {
   display: inline-block;
   vertical-align: middle;
   overflow: hidden;
 }
 
-.c4 {
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -26,11 +26,11 @@ exports[`<TextField /> renders with error 1`] = `
   border-color: #EAEAEA;
 }
 
-.c4:focus-within {
+.c5:focus-within {
   box-shadow: 0 0 0.5rem #F231A5;
 }
 
-.c6 {
+.c7 {
   width: 2.2rem;
   color: #8F8F8F;
   -webkit-order: 1;
@@ -38,11 +38,11 @@ exports[`<TextField /> renders with error 1`] = `
   order: 1;
 }
 
-.c6 > svg {
+.c7 > svg {
   width: 100%;
 }
 
-.c8 {
+.c9 {
   color: #030517;
   font-family: Poppins,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Open Sans','Helvetica Neue',sans-serif;
   font-size: 1.6rem;
@@ -54,68 +54,78 @@ exports[`<TextField /> renders with error 1`] = `
   outline: none;
 }
 
-.c8:disabled {
+.c9:disabled {
   cursor: not-allowed;
 }
 
-.c2 {
+.c9:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 2.4rem #EAEAEA inset;
+  -webkit-filter: none;
+  filter: none;
+}
+
+.c9:-webkit-autofill .c0 {
+  margin: 0.8rem 0;
+}
+
+.c3 {
   font-size: 1.4rem;
   color: #030517;
   cursor: pointer;
 }
 
-.c0 .c3 {
+.c1 .c4 {
   border-color: #FF6347;
 }
 
-.c0 .c1,
-.c0 .c5 {
+.c1 .c2,
+.c1 .c6 {
   color: #FF6347;
 }
 
-.c0 .c1::-webkit-input-placeholder,
-.c0 .c5::-webkit-input-placeholder {
+.c1 .c2::-webkit-input-placeholder,
+.c1 .c6::-webkit-input-placeholder {
   color: currentColor;
 }
 
-.c0 .c1::-moz-placeholder,
-.c0 .c5::-moz-placeholder {
+.c1 .c2::-moz-placeholder,
+.c1 .c6::-moz-placeholder {
   color: currentColor;
 }
 
-.c0 .c1:-ms-input-placeholder,
-.c0 .c5:-ms-input-placeholder {
+.c1 .c2:-ms-input-placeholder,
+.c1 .c6:-ms-input-placeholder {
   color: currentColor;
 }
 
-.c0 .c1::placeholder,
-.c0 .c5::placeholder {
+.c1 .c2::placeholder,
+.c1 .c6::placeholder {
   color: currentColor;
 }
 
-.c9 {
+.c10 {
   color: #FF6347;
   font-size: 1.2rem;
 }
 
 <div
-  class="c0"
+  class="c0 c1"
 >
   <label
-    class="c1 c2"
+    class="c2 c3"
     for="Field"
   >
     Label
   </label>
   <div
-    class="c3 c4"
+    class="c4 c5"
   >
     <div
-      class="c5 c6"
+      class="c6 c7"
     >
       <svg
         aria-hidden="true"
-        class="c7"
+        class="c8"
         data-testid="icon"
         fill="currentColor"
         focusable="false"
@@ -132,7 +142,7 @@ exports[`<TextField /> renders with error 1`] = `
       </svg>
     </div>
     <input
-      class="c8"
+      class="c9"
       id="Field"
       name="Field"
       type="text"
@@ -140,7 +150,7 @@ exports[`<TextField /> renders with error 1`] = `
     />
   </div>
   <p
-    class="c9"
+    class="c10"
   >
     error message
   </p>

@@ -48,6 +48,17 @@ export const Input = styled.input<IconPositionProps>`
     &:disabled {
       cursor: not-allowed;
     }
+
+    &:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0 ${theme.spacings.small} ${theme.colors.lightGray} inset;
+
+      ${Wrapper} {
+      margin: ${theme.spacings.xxsmall} 0;
+    }
+
+      filter: none;
+    }
+
   `}
 `
 
