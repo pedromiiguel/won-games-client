@@ -26,18 +26,20 @@ describe('<TextField />', () => {
   })
 
   it('Changes its value when typing', async () => {
-    const onInput = jest.fn()
-    renderWithTheme(<TextField label="Label" name="Field" onInput={onInput} />)
+    const onInputChange = jest.fn()
+    renderWithTheme(
+      <TextField label="Label" name="Field" onInputChange={onInputChange} />
+    )
     const input = screen.getByRole('textbox')
     const text = 'This is my new text'
     userEvent.type(input, text)
 
     await waitFor(() => {
       expect(input).toHaveValue(text)
-      expect(onInput).toHaveBeenCalledTimes(text.length)
+      expect(onInputChange).toHaveBeenCalledTimes(text.length)
     })
 
-    expect(onInput).toHaveBeenCalledWith(text)
+    expect(onInputChange).toHaveBeenCalledWith(text)
   })
   it('Is accessible by tab', () => {
     renderWithTheme(<TextField label="Label" name="Field" />)

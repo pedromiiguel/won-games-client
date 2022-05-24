@@ -1,50 +1,130 @@
+import { useState } from 'react'
+import Link from 'next/link'
+import {
+  AccountCircle,
+  Email,
+  ErrorOutline,
+  Lock
+} from '@styled-icons/material-outlined'
+import { useMutation } from '@apollo/client'
+import { signIn } from 'next-auth/react'
+import { FieldErrors, signUpValidate } from 'utils/validations'
+
 import Button from 'components/Button'
 import TextField from 'components/TextField'
-import Link from 'next/link'
-import { AccountCircle, Email, Lock } from '@styled-icons/material-outlined'
-import { FormWrapper, FormLink } from 'components/Form'
+import { FormWrapper, FormLink, FormLoading, FormError } from 'components/Form'
+import { UsersPermissionsRegisterInput } from 'types'
+import { MUTATION_REGISTER } from 'graphql/mutations/register'
 
-const FormSignUp = () => (
-  <FormWrapper>
-    <form>
-      <TextField
-        name="name"
-        placeholder="Name"
-        type="name"
-        icon={<AccountCircle />}
-      />
-      <TextField
-        name="email"
-        placeholder="Email"
-        type="email"
-        icon={<Email />}
-      />
-      <TextField
-        name="password"
-        placeholder="Password"
-        type="password"
-        icon={<Lock />}
-      />
+const FormSignUp = () => {
+  const [formError, setFormError] = useState('')
 
-      <TextField
-        name="confirm-password"
-        placeholder="Confirm Password"
-        type="password"
-        icon={<Lock />}
-      />
+  const [fieldError, setFieldError] = useState<FieldErrors>({})
+  const [values, setValues] = useState<UsersPermissionsRegisterInput>({
+    username: '',
+    email: '',
+    password: ''
+  })
 
-      <Button size="large" fullWidth>
-        Sign up now
-      </Button>
+  const [createUser, { error, loading }] = useMutation(MUTATION_REGISTER, {
+    onError: (err) =>
+      setFormError(
+        err?.graphQLErrors[0]?.extensions?.exception.data.message[0].messages[0]
+          .message
+      ),
 
-      <FormLink>
-        Already have an account?{' '}
-        <Link href="/sign-in">
-          <a>Sign in</a>
-        </Link>
-      </FormLink>
-    </form>
-  </FormWrapper>
-)
+    onCompleted: () => {
+      !error &&
+        signIn('credentials', {
+          email: values.email,
+          password: values.password,
+          callbackUrl: '/'
+        })
+    }
+  })
+
+  const handleInput = (field: string, value: string) => {
+    setValues((prev) => ({ ...prev, [field]: value }))
+  }
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault()
+
+    const errors = signUpValidate(values)
+    console.log(errors)
+    if (Object.keys(errors).length) {
+      setFieldError(errors)
+      return
+    }
+    setFieldError({})
+
+    createUser({
+      variables: {
+        input: {
+          username: values.username,
+          email: values.email,
+          password: values.password
+        }
+      }
+    })
+  }
+
+  return (
+    <FormWrapper>
+      {!!formError && (
+        <FormError>
+          <ErrorOutline />
+          {formError}
+        </FormError>
+      )}
+      <form onSubmit={handleSubmit}>
+        <TextField
+          name="username"
+          placeholder="Username"
+          type="text"
+          error={fieldError?.username}
+          onInputChange={(value) => handleInput('username', value)}
+          icon={<AccountCircle />}
+        />
+        <TextField
+          name="email"
+          placeholder="Email"
+          type="email"
+          error={fieldError?.email}
+          onInputChange={(value) => handleInput('email', value)}
+          icon={<Email />}
+        />
+        <TextField
+          name="password"
+          placeholder="Password"
+          onInputChange={(value) => handleInput('password', value)}
+          type="password"
+          error={fieldError?.password}
+          icon={<Lock />}
+        />
+
+        <TextField
+          name="confirm_password"
+          placeholder="Confirm Password"
+          type="password"
+          error={fieldError?.confirm_password}
+          onInputChange={(value) => handleInput('confirm_password', value)}
+          icon={<Lock />}
+        />
+
+        <Button size="large" fullWidth type="submit" disabled={loading}>
+          {loading ? <FormLoading /> : <span>Sign up now</span>}
+        </Button>
+
+        <FormLink>
+          Already have an account?{' '}
+          <Link href="/sign-in">
+            <a>Sign in</a>
+          </Link>
+        </FormLink>
+      </form>
+    </FormWrapper>
+  )
+}
 
 export default FormSignUp

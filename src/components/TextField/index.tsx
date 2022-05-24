@@ -2,7 +2,7 @@ import React, { InputHTMLAttributes, useState } from 'react'
 import * as S from './styles'
 
 export type TextFieldProps = {
-  onInput?: (value: string) => void
+  onInputChange?: (value: string) => void
   label?: string
   icon?: React.ReactNode
   iconPosition?: 'left' | 'right'
@@ -12,7 +12,7 @@ export type TextFieldProps = {
 } & InputHTMLAttributes<HTMLInputElement>
 
 const TextField = ({
-  onInput,
+  onInputChange,
   label,
   icon,
   name,
@@ -29,7 +29,7 @@ const TextField = ({
 
     setValue(newValue)
 
-    !!onInput && onInput(newValue)
+    !!onInputChange && onInputChange(newValue)
   }
 
   return (

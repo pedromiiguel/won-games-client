@@ -5,7 +5,7 @@ import Menu from '.'
 
 describe('<Menu />', () => {
   it('should render the menu', () => {
-    renderWithTheme(<Menu />)
+    renderWithTheme(<Menu status="unauthenticated" />)
 
     expect(screen.getByLabelText(/Open Menu/i)).toBeInTheDocument()
     expect(screen.getByLabelText(/Search/i)).toBeInTheDocument()
@@ -14,7 +14,7 @@ describe('<Menu />', () => {
   })
 
   it('should handle the open/close mobile menu', () => {
-    renderWithTheme(<Menu />)
+    renderWithTheme(<Menu status="unauthenticated" />)
 
     const fullMenuElement = screen.getByRole('navigation', { hidden: true })
 
@@ -33,7 +33,7 @@ describe('<Menu />', () => {
   })
 
   it('should show register box when logged out', () => {
-    renderWithTheme(<Menu />)
+    renderWithTheme(<Menu status="unauthenticated" />)
     expect(screen.getByText(/Sign up/i)).toBeInTheDocument()
 
     expect(screen.queryByText(/My account/i)).not.toBeInTheDocument()
@@ -41,7 +41,7 @@ describe('<Menu />', () => {
   })
 
   it('should show wishlist and account when logged in', () => {
-    renderWithTheme(<Menu username="Pedro" />)
+    renderWithTheme(<Menu username="Pedro" status="authenticated" />)
 
     expect(screen.queryByText(/Sign in/i)).not.toBeInTheDocument()
     expect(screen.queryByText(/Sign up/i)).not.toBeInTheDocument()
@@ -52,5 +52,12 @@ describe('<Menu />', () => {
     expect(
       screen.getByRole('link', { name: /My profile/i })
     ).toBeInTheDocument()
+  })
+
+  it('should not show sign in or dropdownUser if loading', () => {
+    renderWithTheme(<Menu username="Pedro" status="authenticated" />)
+
+    expect(screen.queryAllByText(/Wishlist/i)).toHaveLength(2)
+    expect(screen.queryAllByText(/My profile/i)).toHaveLength(2)
   })
 })

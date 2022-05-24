@@ -3,6 +3,17 @@ import { renderWithTheme } from 'utils/tests/helpers'
 
 import FormSignIn from '.'
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const useRouter = jest.spyOn(require('next/router'), 'useRouter')
+const push = jest.fn()
+
+useRouter.mockImplementation(() => ({
+  push,
+  query: '',
+  asPath: '',
+  route: '/'
+}))
+
 describe('<FormSignIn />', () => {
   it('should render the form', () => {
     const { container } = renderWithTheme(<FormSignIn />)
@@ -10,7 +21,9 @@ describe('<FormSignIn />', () => {
     expect(screen.getByPlaceholderText(/email/i)).toBeInTheDocument()
     expect(screen.getByPlaceholderText(/password/i)).toBeInTheDocument()
 
-    expect(screen.getByRole('button', { name: 'Sign In' })).toBeInTheDocument()
+    expect(
+      screen.getByRole('button', { name: 'Sign in now' })
+    ).toBeInTheDocument()
 
     expect(container.firstChild).toMatchSnapshot()
   })

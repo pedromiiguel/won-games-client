@@ -31,6 +31,7 @@ exports[`<ProfileMenu /> should render the menu 1`] = `
   padding: 1.6rem 2.4rem;
   -webkit-transition: background,color 0.3s ease-in-out;
   transition: background,color 0.3s ease-in-out;
+  cursor: pointer;
 }
 
 .c1:hover {
@@ -157,8 +158,7 @@ exports[`<ProfileMenu /> should render the menu 1`] = `
   </a>
   <a
     class="c1"
-    href="/logout"
-    title="Sign out"
+    role="button"
   >
     <svg
       aria-hidden="true"
@@ -183,4 +183,4 @@ exports[`<ProfileMenu /> should render the menu 1`] = `
     </span>
   </a>
 </nav>
-`;
+`

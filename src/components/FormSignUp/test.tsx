@@ -1,11 +1,15 @@
-import { screen } from '@testing-library/react'
-import { renderWithTheme } from 'utils/tests/helpers'
+import { MockedProvider } from '@apollo/client/testing'
+import { screen, render } from 'utils/test-utils'
 
 import FormSignUp from '.'
 
 describe('<FormSignIn />', () => {
   it('should render the form', () => {
-    const { container } = renderWithTheme(<FormSignUp />)
+    const { container } = render(
+      <MockedProvider>
+        <FormSignUp />
+      </MockedProvider>
+    )
 
     expect(screen.getByPlaceholderText(/name/i)).toBeInTheDocument()
     expect(screen.getByPlaceholderText(/email/i)).toBeInTheDocument()
@@ -20,7 +24,11 @@ describe('<FormSignIn />', () => {
   })
 
   it('should render the text and link to sign up', () => {
-    renderWithTheme(<FormSignUp />)
+    render(
+      <MockedProvider>
+        <FormSignUp />
+      </MockedProvider>
+    )
 
     expect(screen.getByText('Already have an account?')).toBeInTheDocument()
 

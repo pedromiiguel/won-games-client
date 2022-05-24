@@ -23,10 +23,10 @@ const props: GameTemplateProps = {
   upcomingTitle: 'Upcoming'
 }
 
-jest.mock('components/Menu', () => ({
+jest.mock('templates/Base', () => ({
   __esModule: true,
-  default: function Mock() {
-    return <div data-testid="Mock Menu" />
+  default: function Mock({ children }: { children: React.ReactNode }) {
+    return <div data-testid="Mock Base">{children}</div>
   }
 }))
 
@@ -58,24 +58,15 @@ jest.mock('components/Showcase', () => ({
   }
 }))
 
-jest.mock('components/Footer', () => ({
-  __esModule: true,
-  default: function Mock() {
-    return <div data-testid="Mock Footer" />
-  }
-}))
-
 describe('<Game />', () => {
   it('should render the template with components', () => {
     renderWithTheme(<Game {...props} />)
 
-    expect(screen.getByTestId('Mock Menu')).toBeInTheDocument()
     expect(screen.getByTestId('Mock Gallery')).toBeInTheDocument()
     expect(screen.getByTestId('Mock GameDetails')).toBeInTheDocument()
     expect(screen.getByTestId('Mock GameInfo')).toBeInTheDocument()
     expect(screen.getAllByTestId('Mock Showcase')).toHaveLength(2)
     expect(screen.getByText(/Custom HTML/i)).toBeInTheDocument()
-    expect(screen.getByTestId('Mock Footer')).toBeInTheDocument()
   })
 
   it('should not render the gallery if no images', () => {
