@@ -5,7 +5,7 @@ schema: 'schema.gql'
 documents: './src/graphql/**/*.ts'
 
 generates:
-  src/types.ts:
+  src/graphql/types.ts:
     - typescript
   src/:
     preset: near-operation-file

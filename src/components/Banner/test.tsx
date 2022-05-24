@@ -1,11 +1,10 @@
-import { screen } from '@testing-library/react'
-import { renderWithTheme } from 'utils/tests/helpers'
+import { screen, render } from 'utils/test-utils'
 
 import Banner from '.'
 
 describe('<Banner />', () => {
   it('should render correctly', () => {
-    const { container } = renderWithTheme(
+    const { container } = render(
       <Banner
         title="Defy death"
         subtitle="<p>Play the new <strong>CrashLands</strong> season"
@@ -32,7 +31,7 @@ describe('<Banner />', () => {
   })
 
   it('should render a Ribbon', () => {
-    renderWithTheme(
+    render(
       <Banner
         title="Defy death"
         subtitle="<p>Play the new <strong>CrashLands</strong> season"

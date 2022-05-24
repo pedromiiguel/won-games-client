@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import * as Types from '../../types'
+import * as Types from '../types'
 
 import gql from 'graphql-tag'
 import { GameFragmentFragmentDoc } from '../fragments/game.generated'
