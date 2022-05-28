@@ -1,6 +1,7 @@
 import { BannerFragmentFragment } from 'graphql/fragments/banner.generated'
 import { GameFragmentFragment } from 'graphql/fragments/game.generated'
 import { HighlightFragmentFragment } from 'graphql/fragments/highlight.generated'
+
 import formatPrice from 'utils/formatPrice'
 
 export const bannerMapper = (banners: BannerFragmentFragment[]) => {

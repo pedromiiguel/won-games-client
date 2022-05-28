@@ -821,6 +821,14 @@ export type Morph =
   | UsersPermissionsUserConnectionUpdated_At
   | UsersPermissionsUserConnectionUsername
   | UsersPermissionsUserGroupBy
+  | Wishlist
+  | WishlistAggregator
+  | WishlistConnection
+  | WishlistConnectionCreated_At
+  | WishlistConnectionId
+  | WishlistConnectionUpdated_At
+  | WishlistConnectionUser
+  | WishlistGroupBy
   | CreateBannerPayload
   | CreateCategoryPayload
   | CreateDeveloperPayload
@@ -829,6 +837,7 @@ export type Morph =
   | CreatePublisherPayload
   | CreateRolePayload
   | CreateUserPayload
+  | CreateWishlistPayload
   | DeleteBannerPayload
   | DeleteCategoryPayload
   | DeleteDeveloperPayload
@@ -840,6 +849,7 @@ export type Morph =
   | DeleteRecommendedPayload
   | DeleteRolePayload
   | DeleteUserPayload
+  | DeleteWishlistPayload
   | UpdateBannerPayload
   | UpdateCategoryPayload
   | UpdateDeveloperPayload
@@ -850,6 +860,7 @@ export type Morph =
   | UpdateRecommendedPayload
   | UpdateRolePayload
   | UpdateUserPayload
+  | UpdateWishlistPayload
 
 export type Mutation = {
   __typename?: 'Mutation'
@@ -863,6 +874,7 @@ export type Mutation = {
   createRole?: Maybe<CreateRolePayload>
   /** Create a new user */
   createUser?: Maybe<CreateUserPayload>
+  createWishlist?: Maybe<CreateWishlistPayload>
   deleteBanner?: Maybe<DeleteBannerPayload>
   deleteCategory?: Maybe<DeleteCategoryPayload>
   deleteDeveloper?: Maybe<DeleteDeveloperPayload>
@@ -877,6 +889,7 @@ export type Mutation = {
   deleteRole?: Maybe<DeleteRolePayload>
   /** Delete an existing user */
   deleteUser?: Maybe<DeleteUserPayload>
+  deleteWishlist?: Maybe<DeleteWishlistPayload>
   emailConfirmation?: Maybe<UsersPermissionsLoginPayload>
   forgotPassword?: Maybe<UserPermissionsPasswordPayload>
   login: UsersPermissionsLoginPayload
@@ -896,6 +909,7 @@ export type Mutation = {
   updateRole?: Maybe<UpdateRolePayload>
   /** Update an existing user */
   updateUser?: Maybe<UpdateUserPayload>
+  updateWishlist?: Maybe<UpdateWishlistPayload>
   upload: UploadFile
 }
 
@@ -929,6 +943,10 @@ export type MutationCreateRoleArgs = {
 
 export type MutationCreateUserArgs = {
   input?: InputMaybe<CreateUserInput>
+}
+
+export type MutationCreateWishlistArgs = {
+  input?: InputMaybe<CreateWishlistInput>
 }
 
 export type MutationDeleteBannerArgs = {
@@ -965,6 +983,10 @@ export type MutationDeleteRoleArgs = {
 
 export type MutationDeleteUserArgs = {
   input?: InputMaybe<DeleteUserInput>
+}
+
+export type MutationDeleteWishlistArgs = {
+  input?: InputMaybe<DeleteWishlistInput>
 }
 
 export type MutationEmailConfirmationArgs = {
@@ -1040,6 +1062,10 @@ export type MutationUpdateRoleArgs = {
 
 export type MutationUpdateUserArgs = {
   input?: InputMaybe<UpdateUserInput>
+}
+
+export type MutationUpdateWishlistArgs = {
+  input?: InputMaybe<UpdateWishlistInput>
 }
 
 export type MutationUploadArgs = {
@@ -1260,6 +1286,9 @@ export type Query = {
   user?: Maybe<UsersPermissionsUser>
   users: Array<UsersPermissionsUser>
   usersConnection?: Maybe<UsersPermissionsUserConnection>
+  wishlist?: Maybe<Wishlist>
+  wishlists: Array<Wishlist>
+  wishlistsConnection?: Maybe<WishlistConnection>
 }
 
 export type QueryBannerArgs = {
@@ -1439,6 +1468,26 @@ export type QueryUsersArgs = {
 }
 
 export type QueryUsersConnectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>
+  sort?: InputMaybe<Scalars['String']>
+  start?: InputMaybe<Scalars['Int']>
+  where?: InputMaybe<Scalars['JSON']>
+}
+
+export type QueryWishlistArgs = {
+  id: Scalars['ID']
+  publicationState?: InputMaybe<PublicationState>
+}
+
+export type QueryWishlistsArgs = {
+  limit?: InputMaybe<Scalars['Int']>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Scalars['String']>
+  start?: InputMaybe<Scalars['Int']>
+  where?: InputMaybe<Scalars['JSON']>
+}
+
+export type QueryWishlistsConnectionArgs = {
   limit?: InputMaybe<Scalars['Int']>
   sort?: InputMaybe<Scalars['String']>
   start?: InputMaybe<Scalars['Int']>
@@ -1894,6 +1943,74 @@ export type UsersPermissionsUserGroupBy = {
   username?: Maybe<Array<Maybe<UsersPermissionsUserConnectionUsername>>>
 }
 
+export type Wishlist = {
+  __typename?: 'Wishlist'
+  created_at: Scalars['DateTime']
+  games: Array<Game>
+  id: Scalars['ID']
+  updated_at: Scalars['DateTime']
+  user?: Maybe<UsersPermissionsUser>
+}
+
+export type WishlistGamesArgs = {
+  limit?: InputMaybe<Scalars['Int']>
+  sort?: InputMaybe<Scalars['String']>
+  start?: InputMaybe<Scalars['Int']>
+  where?: InputMaybe<Scalars['JSON']>
+}
+
+export type WishlistAggregator = {
+  __typename?: 'WishlistAggregator'
+  count?: Maybe<Scalars['Int']>
+  totalCount?: Maybe<Scalars['Int']>
+}
+
+export type WishlistConnection = {
+  __typename?: 'WishlistConnection'
+  aggregate?: Maybe<WishlistAggregator>
+  groupBy?: Maybe<WishlistGroupBy>
+  values?: Maybe<Array<Maybe<Wishlist>>>
+}
+
+export type WishlistConnectionCreated_At = {
+  __typename?: 'WishlistConnectionCreated_at'
+  connection?: Maybe<WishlistConnection>
+  key?: Maybe<Scalars['DateTime']>
+}
+
+export type WishlistConnectionId = {
+  __typename?: 'WishlistConnectionId'
+  connection?: Maybe<WishlistConnection>
+  key?: Maybe<Scalars['ID']>
+}
+
+export type WishlistConnectionUpdated_At = {
+  __typename?: 'WishlistConnectionUpdated_at'
+  connection?: Maybe<WishlistConnection>
+  key?: Maybe<Scalars['DateTime']>
+}
+
+export type WishlistConnectionUser = {
+  __typename?: 'WishlistConnectionUser'
+  connection?: Maybe<WishlistConnection>
+  key?: Maybe<Scalars['ID']>
+}
+
+export type WishlistGroupBy = {
+  __typename?: 'WishlistGroupBy'
+  created_at?: Maybe<Array<Maybe<WishlistConnectionCreated_At>>>
+  id?: Maybe<Array<Maybe<WishlistConnectionId>>>
+  updated_at?: Maybe<Array<Maybe<WishlistConnectionUpdated_At>>>
+  user?: Maybe<Array<Maybe<WishlistConnectionUser>>>
+}
+
+export type WishlistInput = {
+  created_by?: InputMaybe<Scalars['ID']>
+  games?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>
+  updated_by?: InputMaybe<Scalars['ID']>
+  user?: InputMaybe<Scalars['ID']>
+}
+
 export type CreateBannerInput = {
   data?: InputMaybe<BannerInput>
 }
@@ -1964,6 +2081,15 @@ export type CreateUserInput = {
 export type CreateUserPayload = {
   __typename?: 'createUserPayload'
   user?: Maybe<UsersPermissionsUser>
+}
+
+export type CreateWishlistInput = {
+  data?: InputMaybe<WishlistInput>
+}
+
+export type CreateWishlistPayload = {
+  __typename?: 'createWishlistPayload'
+  wishlist?: Maybe<Wishlist>
 }
 
 export type DeleteBannerInput = {
@@ -2055,6 +2181,15 @@ export type DeleteUserInput = {
 export type DeleteUserPayload = {
   __typename?: 'deleteUserPayload'
   user?: Maybe<UsersPermissionsUser>
+}
+
+export type DeleteWishlistInput = {
+  where?: InputMaybe<InputId>
+}
+
+export type DeleteWishlistPayload = {
+  __typename?: 'deleteWishlistPayload'
+  wishlist?: Maybe<Wishlist>
 }
 
 export type EditBannerInput = {
@@ -2227,6 +2362,13 @@ export type EditUserInput = {
   username?: InputMaybe<Scalars['String']>
 }
 
+export type EditWishlistInput = {
+  created_by?: InputMaybe<Scalars['ID']>
+  games?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>
+  updated_by?: InputMaybe<Scalars['ID']>
+  user?: InputMaybe<Scalars['ID']>
+}
+
 export type UpdateBannerInput = {
   data?: InputMaybe<EditBannerInput>
   where?: InputMaybe<InputId>
@@ -2323,4 +2465,14 @@ export type UpdateUserInput = {
 export type UpdateUserPayload = {
   __typename?: 'updateUserPayload'
   user?: Maybe<UsersPermissionsUser>
+}
+
+export type UpdateWishlistInput = {
+  data?: InputMaybe<EditWishlistInput>
+  where?: InputMaybe<InputId>
+}
+
+export type UpdateWishlistPayload = {
+  __typename?: 'updateWishlistPayload'
+  wishlist?: Maybe<Wishlist>
 }

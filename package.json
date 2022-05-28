@@ -10,7 +10,7 @@
     "typecheck": "tsc --project tsconfig.json --noEmit",
     "test": "jest --maxWorkers=50%",
     "test:watch": "jest --watch --maxWorkers=25%",
-    "schema:download": "apollo client:download-schema --endpoint=http://localhost:1337/graphql schema-temp.gql",
+    "schema:download": "apollo client:download-schema --endpoint=http://localhost:1337/graphql schema.graphql",
     "test:ci": "jest --runInBand",
     "generate": "yarn plop --plopfile generators/plopfile.js",
     "storybook": "start-storybook -p 6006",

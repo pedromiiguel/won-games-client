@@ -33,8 +33,6 @@ const FormForgotPassword = () => {
     setValues((prev) => ({ ...prev, [field]: value }))
   }
 
-  console.log()
-
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
     setLoading(true)
@@ -56,6 +54,7 @@ const FormForgotPassword = () => {
     } catch (error: unknown) {
       const err = error as AxiosError
       if (err?.response) {
+        //ts-ignore
         setFormError(err?.response.data.message[0].messages[0].message)
       }
     }

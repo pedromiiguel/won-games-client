@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import gql from 'graphql-tag'
 export type GameFragmentFragment = {
   __typename?: 'Game'
