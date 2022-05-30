@@ -1,3 +1,5 @@
+import 'session.mock'
+
 import 'match-media-mock'
 
 import { screen } from '@testing-library/react'

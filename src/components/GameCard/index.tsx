@@ -1,12 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link'
-import { FavoriteBorder, Favorite } from '@styled-icons/material-outlined'
 
 import Ribbon from 'components/Ribbon'
 import CartButton from 'components/CartButton'
 
 import formatPrice from 'utils/formatPrice'
 import * as S from './styles'
+import WislistButton from 'components/WislistButton'
 
 export type GameCardProps = {
   id: string
@@ -16,8 +16,6 @@ export type GameCardProps = {
   img: string
   price: number
   promotionPrice?: number
-  favorite?: boolean
-  onFav?: () => void
   ribbon?: string
   ribbonSize?: 'normal' | 'small'
   ribbonColor?: 'primary' | 'secondary'
@@ -31,8 +29,6 @@ const GameCard = ({
   img,
   price,
   promotionPrice,
-  favorite = false,
-  onFav,
   ribbon,
   ribbonSize = 'small',
   ribbonColor = 'primary'
@@ -56,14 +52,10 @@ const GameCard = ({
           <S.Developer>{developer}</S.Developer>
         </S.Info>
       </Link>
-
-      <S.FavButton role="button" onClick={onFav}>
-        {favorite ? (
-          <Favorite aria-label="Remove from wishlist" />
-        ) : (
-          <FavoriteBorder aria-label="Add to Wishlist" />
-        )}
+      <S.FavButton>
+        <WislistButton id={id} />
       </S.FavButton>
+
       <S.BuyBox>
         {!!promotionPrice && (
           <S.Price isPromotional>{formatPrice(price)}</S.Price>

@@ -39,7 +39,10 @@ const UserDropdown = ({ username }: UserDropdownProps) => (
         </S.Link>
       </Link>
 
-      <S.Link role="button" onClick={() => signOut()}>
+      <S.Link
+        role="button"
+        onClick={() => signOut({ callbackUrl: 'http://localhost:3000/' })}
+      >
         <ExitToApp />
         <span>Sign out</span>
       </S.Link>
