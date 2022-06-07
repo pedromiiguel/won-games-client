@@ -7,7 +7,7 @@ import { cartMapper } from 'utils/mappers'
 
 const CART_KEY = 'cartItems'
 
-type CartItem = {
+export type CartItem = {
   id: string
   img: string
   title: string
@@ -90,7 +90,7 @@ const CartProvider = ({ children }: CartProviderProps) => {
       value={{
         items: cartMapper(data?.games),
         quantity: cartItems?.length,
-        total: formatPrice(total || 0, true),
+        total: formatPrice(total || 0),
         isInCart,
         addToCart,
         removeFromCart,

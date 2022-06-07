@@ -1,11 +1,4 @@
-export default function formatPrice(
-  price: number | bigint,
-  isTotal = false
-): string {
-  if (!price && !isTotal) {
-    return 'FREE'
-  }
-
+export default function formatPrice(price: number | bigint): string {
   return new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD'
