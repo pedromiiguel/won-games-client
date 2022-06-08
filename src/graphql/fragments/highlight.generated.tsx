@@ -1,4 +1,4 @@
-import * as Types from '../../types'
+import * as Types from '../types'
 
 import gql from 'graphql-tag'
 export type HighlightFragmentFragment = {

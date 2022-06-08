@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
+export type Maybe<T> = T | null
 export type InputMaybe<T> = Maybe<T>
 export type Exact<T extends { [key: string]: unknown }> = {
   [K in keyof T]: T[K]
@@ -419,6 +419,32 @@ export enum Enum_Game_Rating {
   Br18 = 'BR18'
 }
 
+export type EmailDesignerEmailTemplate = {
+  __typename?: 'EmailDesignerEmailTemplate'
+  bodyHtml?: Maybe<Scalars['String']>
+  bodyText?: Maybe<Scalars['String']>
+  created_at: Scalars['DateTime']
+  design?: Maybe<Scalars['JSON']>
+  enabled?: Maybe<Scalars['Boolean']>
+  id: Scalars['ID']
+  name?: Maybe<Scalars['String']>
+  subject?: Maybe<Scalars['String']>
+  tags?: Maybe<Scalars['JSON']>
+  updated_at: Scalars['DateTime']
+}
+
+export type EmailTemplateInput = {
+  bodyHtml?: InputMaybe<Scalars['String']>
+  bodyText?: InputMaybe<Scalars['String']>
+  created_by?: InputMaybe<Scalars['ID']>
+  design?: InputMaybe<Scalars['JSON']>
+  enabled?: InputMaybe<Scalars['Boolean']>
+  name?: InputMaybe<Scalars['String']>
+  subject?: InputMaybe<Scalars['String']>
+  tags?: InputMaybe<Scalars['JSON']>
+  updated_by?: InputMaybe<Scalars['ID']>
+}
+
 export type FileInfoInput = {
   alternativeText?: InputMaybe<Scalars['String']>
   caption?: InputMaybe<Scalars['String']>
@@ -726,6 +752,7 @@ export type Morph =
   | DeveloperConnectionSlug
   | DeveloperConnectionUpdated_At
   | DeveloperGroupBy
+  | EmailDesignerEmailTemplate
   | Game
   | GameAggregator
   | GameAggregatorAvg
@@ -749,6 +776,18 @@ export type Morph =
   | GameGroupBy
   | Home
   | I18NLocale
+  | Order
+  | OrderAggregator
+  | OrderConnection
+  | OrderConnectionCard_Brand
+  | OrderConnectionCard_Last4
+  | OrderConnectionCreated_At
+  | OrderConnectionId
+  | OrderConnectionPayment_Intent_Id
+  | OrderConnectionTotal_In_Cents
+  | OrderConnectionUpdated_At
+  | OrderConnectionUser
+  | OrderGroupBy
   | Platform
   | PlatformAggregator
   | PlatformConnection
@@ -833,6 +872,7 @@ export type Morph =
   | CreateCategoryPayload
   | CreateDeveloperPayload
   | CreateGamePayload
+  | CreateOrderPayload
   | CreatePlatformPayload
   | CreatePublisherPayload
   | CreateRolePayload
@@ -844,6 +884,7 @@ export type Morph =
   | DeleteFilePayload
   | DeleteGamePayload
   | DeleteHomePayload
+  | DeleteOrderPayload
   | DeletePlatformPayload
   | DeletePublisherPayload
   | DeleteRecommendedPayload
@@ -855,6 +896,7 @@ export type Morph =
   | UpdateDeveloperPayload
   | UpdateGamePayload
   | UpdateHomePayload
+  | UpdateOrderPayload
   | UpdatePlatformPayload
   | UpdatePublisherPayload
   | UpdateRecommendedPayload
@@ -868,6 +910,7 @@ export type Mutation = {
   createCategory?: Maybe<CreateCategoryPayload>
   createDeveloper?: Maybe<CreateDeveloperPayload>
   createGame?: Maybe<CreateGamePayload>
+  createOrder?: Maybe<CreateOrderPayload>
   createPlatform?: Maybe<CreatePlatformPayload>
   createPublisher?: Maybe<CreatePublisherPayload>
   /** Create a new role */
@@ -882,6 +925,7 @@ export type Mutation = {
   deleteFile?: Maybe<DeleteFilePayload>
   deleteGame?: Maybe<DeleteGamePayload>
   deleteHome?: Maybe<DeleteHomePayload>
+  deleteOrder?: Maybe<DeleteOrderPayload>
   deletePlatform?: Maybe<DeletePlatformPayload>
   deletePublisher?: Maybe<DeletePublisherPayload>
   deleteRecommended?: Maybe<DeleteRecommendedPayload>
@@ -902,6 +946,7 @@ export type Mutation = {
   updateFileInfo: UploadFile
   updateGame?: Maybe<UpdateGamePayload>
   updateHome?: Maybe<UpdateHomePayload>
+  updateOrder?: Maybe<UpdateOrderPayload>
   updatePlatform?: Maybe<UpdatePlatformPayload>
   updatePublisher?: Maybe<UpdatePublisherPayload>
   updateRecommended?: Maybe<UpdateRecommendedPayload>
@@ -927,6 +972,10 @@ export type MutationCreateDeveloperArgs = {
 
 export type MutationCreateGameArgs = {
   input?: InputMaybe<CreateGameInput>
+}
+
+export type MutationCreateOrderArgs = {
+  input?: InputMaybe<CreateOrderInput>
 }
 
 export type MutationCreatePlatformArgs = {
@@ -967,6 +1016,10 @@ export type MutationDeleteFileArgs = {
 
 export type MutationDeleteGameArgs = {
   input?: InputMaybe<DeleteGameInput>
+}
+
+export type MutationDeleteOrderArgs = {
+  input?: InputMaybe<DeleteOrderInput>
 }
 
 export type MutationDeletePlatformArgs = {
@@ -1044,6 +1097,10 @@ export type MutationUpdateHomeArgs = {
   input?: InputMaybe<UpdateHomeInput>
 }
 
+export type MutationUpdateOrderArgs = {
+  input?: InputMaybe<UpdateOrderInput>
+}
+
 export type MutationUpdatePlatformArgs = {
   input?: InputMaybe<UpdatePlatformInput>
 }
@@ -1075,6 +1132,110 @@ export type MutationUploadArgs = {
   ref?: InputMaybe<Scalars['String']>
   refId?: InputMaybe<Scalars['ID']>
   source?: InputMaybe<Scalars['String']>
+}
+
+export type Order = {
+  __typename?: 'Order'
+  card_brand?: Maybe<Scalars['String']>
+  card_last4?: Maybe<Scalars['String']>
+  created_at: Scalars['DateTime']
+  games: Array<Game>
+  id: Scalars['ID']
+  payment_intent_id?: Maybe<Scalars['String']>
+  total_in_cents: Scalars['Long']
+  updated_at: Scalars['DateTime']
+  user?: Maybe<UsersPermissionsUser>
+}
+
+export type OrderGamesArgs = {
+  limit?: InputMaybe<Scalars['Int']>
+  sort?: InputMaybe<Scalars['String']>
+  start?: InputMaybe<Scalars['Int']>
+  where?: InputMaybe<Scalars['JSON']>
+}
+
+export type OrderAggregator = {
+  __typename?: 'OrderAggregator'
+  count?: Maybe<Scalars['Int']>
+  totalCount?: Maybe<Scalars['Int']>
+}
+
+export type OrderConnection = {
+  __typename?: 'OrderConnection'
+  aggregate?: Maybe<OrderAggregator>
+  groupBy?: Maybe<OrderGroupBy>
+  values?: Maybe<Array<Maybe<Order>>>
+}
+
+export type OrderConnectionCard_Brand = {
+  __typename?: 'OrderConnectionCard_brand'
+  connection?: Maybe<OrderConnection>
+  key?: Maybe<Scalars['String']>
+}
+
+export type OrderConnectionCard_Last4 = {
+  __typename?: 'OrderConnectionCard_last4'
+  connection?: Maybe<OrderConnection>
+  key?: Maybe<Scalars['String']>
+}
+
+export type OrderConnectionCreated_At = {
+  __typename?: 'OrderConnectionCreated_at'
+  connection?: Maybe<OrderConnection>
+  key?: Maybe<Scalars['DateTime']>
+}
+
+export type OrderConnectionId = {
+  __typename?: 'OrderConnectionId'
+  connection?: Maybe<OrderConnection>
+  key?: Maybe<Scalars['ID']>
+}
+
+export type OrderConnectionPayment_Intent_Id = {
+  __typename?: 'OrderConnectionPayment_intent_id'
+  connection?: Maybe<OrderConnection>
+  key?: Maybe<Scalars['String']>
+}
+
+export type OrderConnectionTotal_In_Cents = {
+  __typename?: 'OrderConnectionTotal_in_cents'
+  connection?: Maybe<OrderConnection>
+  key?: Maybe<Scalars['ID']>
+}
+
+export type OrderConnectionUpdated_At = {
+  __typename?: 'OrderConnectionUpdated_at'
+  connection?: Maybe<OrderConnection>
+  key?: Maybe<Scalars['DateTime']>
+}
+
+export type OrderConnectionUser = {
+  __typename?: 'OrderConnectionUser'
+  connection?: Maybe<OrderConnection>
+  key?: Maybe<Scalars['ID']>
+}
+
+export type OrderGroupBy = {
+  __typename?: 'OrderGroupBy'
+  card_brand?: Maybe<Array<Maybe<OrderConnectionCard_Brand>>>
+  card_last4?: Maybe<Array<Maybe<OrderConnectionCard_Last4>>>
+  created_at?: Maybe<Array<Maybe<OrderConnectionCreated_At>>>
+  id?: Maybe<Array<Maybe<OrderConnectionId>>>
+  payment_intent_id?: Maybe<Array<Maybe<OrderConnectionPayment_Intent_Id>>>
+  total_in_cents?: Maybe<Array<Maybe<OrderConnectionTotal_In_Cents>>>
+  updated_at?: Maybe<Array<Maybe<OrderConnectionUpdated_At>>>
+  user?: Maybe<Array<Maybe<OrderConnectionUser>>>
+}
+
+export type OrderInput = {
+  card_brand?: InputMaybe<Scalars['String']>
+  card_last4?: InputMaybe<Scalars['String']>
+  created_by?: InputMaybe<Scalars['ID']>
+  games?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>
+  payment_intent_id?: InputMaybe<Scalars['String']>
+  total_in_cents: Scalars['Long']
+  updated_by?: InputMaybe<Scalars['ID']>
+  user?: InputMaybe<Scalars['ID']>
 }
 
 export type Platform = {
@@ -1272,6 +1433,9 @@ export type Query = {
   gamesConnection?: Maybe<GameConnection>
   home?: Maybe<Home>
   me?: Maybe<UsersPermissionsMe>
+  order?: Maybe<Order>
+  orders: Array<Order>
+  ordersConnection?: Maybe<OrderConnection>
   platform?: Maybe<Platform>
   platforms: Array<Platform>
   platformsConnection?: Maybe<PlatformConnection>
@@ -1388,6 +1552,26 @@ export type QueryGamesConnectionArgs = {
 
 export type QueryHomeArgs = {
   publicationState?: InputMaybe<PublicationState>
+}
+
+export type QueryOrderArgs = {
+  id: Scalars['ID']
+  publicationState?: InputMaybe<PublicationState>
+}
+
+export type QueryOrdersArgs = {
+  limit?: InputMaybe<Scalars['Int']>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Scalars['String']>
+  start?: InputMaybe<Scalars['Int']>
+  where?: InputMaybe<Scalars['JSON']>
+}
+
+export type QueryOrdersConnectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>
+  sort?: InputMaybe<Scalars['String']>
+  start?: InputMaybe<Scalars['Int']>
+  where?: InputMaybe<Scalars['JSON']>
 }
 
 export type QueryPlatformArgs = {
@@ -2047,6 +2231,15 @@ export type CreateGamePayload = {
   game?: Maybe<Game>
 }
 
+export type CreateOrderInput = {
+  data?: InputMaybe<OrderInput>
+}
+
+export type CreateOrderPayload = {
+  __typename?: 'createOrderPayload'
+  order?: Maybe<Order>
+}
+
 export type CreatePlatformInput = {
   data?: InputMaybe<PlatformInput>
 }
@@ -2140,6 +2333,15 @@ export type DeleteGamePayload = {
 export type DeleteHomePayload = {
   __typename?: 'deleteHomePayload'
   home?: Maybe<Home>
+}
+
+export type DeleteOrderInput = {
+  where?: InputMaybe<InputId>
+}
+
+export type DeleteOrderPayload = {
+  __typename?: 'deleteOrderPayload'
+  order?: Maybe<Order>
 }
 
 export type DeletePlatformInput = {
@@ -2258,6 +2460,18 @@ export type EditDeveloperInput = {
   updated_by?: InputMaybe<Scalars['ID']>
 }
 
+export type EditEmailTemplateInput = {
+  bodyHtml?: InputMaybe<Scalars['String']>
+  bodyText?: InputMaybe<Scalars['String']>
+  created_by?: InputMaybe<Scalars['ID']>
+  design?: InputMaybe<Scalars['JSON']>
+  enabled?: InputMaybe<Scalars['Boolean']>
+  name?: InputMaybe<Scalars['String']>
+  subject?: InputMaybe<Scalars['String']>
+  tags?: InputMaybe<Scalars['JSON']>
+  updated_by?: InputMaybe<Scalars['ID']>
+}
+
 export type EditFileInput = {
   alternativeText?: InputMaybe<Scalars['String']>
   caption?: InputMaybe<Scalars['String']>
@@ -2312,6 +2526,17 @@ export type EditLocaleInput = {
   created_by?: InputMaybe<Scalars['ID']>
   name?: InputMaybe<Scalars['String']>
   updated_by?: InputMaybe<Scalars['ID']>
+}
+
+export type EditOrderInput = {
+  card_brand?: InputMaybe<Scalars['String']>
+  card_last4?: InputMaybe<Scalars['String']>
+  created_by?: InputMaybe<Scalars['ID']>
+  games?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>
+  payment_intent_id?: InputMaybe<Scalars['String']>
+  total_in_cents?: InputMaybe<Scalars['Long']>
+  updated_by?: InputMaybe<Scalars['ID']>
+  user?: InputMaybe<Scalars['ID']>
 }
 
 export type EditPlatformInput = {
@@ -2416,6 +2641,16 @@ export type UpdateHomeInput = {
 export type UpdateHomePayload = {
   __typename?: 'updateHomePayload'
   home?: Maybe<Home>
+}
+
+export type UpdateOrderInput = {
+  data?: InputMaybe<EditOrderInput>
+  where?: InputMaybe<InputId>
+}
+
+export type UpdateOrderPayload = {
+  __typename?: 'updateOrderPayload'
+  order?: Maybe<Order>
 }
 
 export type UpdatePlatformInput = {

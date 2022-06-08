@@ -1,18 +1,22 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as Types from '../types'
 
 import gql from 'graphql-tag'
 import { GameFragmentFragmentDoc } from '../fragments/game.generated'
 import * as Urql from 'urql'
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
-export type WishlistQueryVariables = Types.Exact<{
-  identifier: Types.Scalars['String']
+export type OrdersQueryVariables = Types.Exact<{
+  identifier: Types.Scalars['ID']
 }>
 
-export type WishlistQuery = {
+export type OrdersQuery = {
   __typename?: 'Query'
-  wishlists: Array<{
-    __typename?: 'Wishlist'
+  orders: Array<{
+    __typename?: 'Order'
     id: string
+    created_at: any
+    card_brand?: string | null
+    card_last4?: string | null
     games: Array<{
       __typename?: 'Game'
       id: string
@@ -25,10 +29,13 @@ export type WishlistQuery = {
   }>
 }
 
-export const WishlistDocument = gql`
-  query Wishlist($identifier: String!) {
-    wishlists(where: { user: { email: $identifier } }) {
+export const OrdersDocument = gql`
+  query Orders($identifier: ID!) {
+    orders(where: { user: { id: $identifier } }) {
       id
+      created_at
+      card_brand
+      card_last4
       games {
         ...GameFragment
       }
@@ -37,8 +44,8 @@ export const WishlistDocument = gql`
   ${GameFragmentFragmentDoc}
 `
 
-export function useWishlistQuery(
-  options: Omit<Urql.UseQueryArgs<WishlistQueryVariables>, 'query'>
+export function useOrdersQuery(
+  options: Omit<Urql.UseQueryArgs<OrdersQueryVariables>, 'query'>
 ) {
-  return Urql.useQuery<WishlistQuery>({ query: WishlistDocument, ...options })
+  return Urql.useQuery<OrdersQuery>({ query: OrdersDocument, ...options })
 }
