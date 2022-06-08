@@ -3,6 +3,13 @@ import { renderWithTheme } from 'utils/tests/helpers'
 
 import Menu from '.'
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const useRouter = jest.spyOn(require('next/router'), 'useRouter')
+
+useRouter.mockImplementation(() => ({
+  push: jest.fn()
+}))
+
 describe('<Menu />', () => {
   it('should render the menu', () => {
     renderWithTheme(<Menu status="unauthenticated" />)
