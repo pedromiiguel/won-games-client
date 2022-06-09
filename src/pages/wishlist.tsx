@@ -24,7 +24,9 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const session = await protectedRoutes(context)
   const apolloClient = initializeApollo(null, session)
 
-  if (!session) return {}
+  if (!session) {
+    return { props: {} }
+  }
 
   await apolloClient.query<WishlistQuery, WishlistQueryVariables>({
     query: QUERY_WISHLIST,
