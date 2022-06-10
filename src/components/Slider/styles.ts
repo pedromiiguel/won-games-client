@@ -65,6 +65,7 @@ export const Wrapper = styled.section`
   }
   .slick-slide img {
     display: block;
+    position: relative;
   }
   .slick-slide.slick-loading img {
     display: none;

@@ -81,6 +81,7 @@ exports[`<Slider /> should render children as slider item 1`] = `
 
 .c0 .slick-slide img {
   display: block;
+  position: relative;
 }
 
 .c0 .slick-slide.slick-loading img {

@@ -1,4 +1,5 @@
 import { Divider } from 'components/Divider'
+import Image from 'next/image'
 import Gallery, { GalleryImageProps } from 'components/Gallery'
 import { GameCardProps } from 'components/GameCard'
 import GameDetails, { GameDetailsProps } from 'components/GameDetails'
@@ -35,7 +36,10 @@ const Game = ({
   upcomingTitle
 }: GameTemplateProps) => (
   <Base>
-    <S.Cover src={cover} role="image" aria-label="cover" />
+    <S.CoverWrapper>
+      <Image src={cover} alt={gameInfo.title} layout="fill" objectFit="cover" />
+    </S.CoverWrapper>
+
     <S.Main>
       <S.SectionGameInfo>
         <GameInfo {...gameInfo} />
