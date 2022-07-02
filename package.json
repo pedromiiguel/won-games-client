@@ -20,7 +20,8 @@
     "codegen": "graphql-codegen --config codegen.yml",
     "schema:convert": "node convertToNonNull.js",
     "cy:open": "cypress open",
-    "cy:run": "cypress run"
+    "cy:run": "cypress run",
+    "test:e2e": "start-server-and-test dev 3000 cy:open"
   },
   "lint-staged": {
     "src/**/*": [
@@ -93,6 +94,7 @@
     "msw": "^0.41.0",
     "plop": "^3.0.5",
     "prettier": "^2.4.1",
+    "start-server-and-test": "^1.14.0",
     "storybook-addon-next-router": "^3.0.8",
     "typescript": "^4.5.5",
     "urql": "^2.2.0",

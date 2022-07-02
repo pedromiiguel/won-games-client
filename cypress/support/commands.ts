@@ -1,3 +1,4 @@
+/* eslint-disable cypress/no-unnecessary-waiting */
 /// <reference types="cypress" />
 // ***********************************************
 // This example commands.ts shows you how to
@@ -38,3 +39,48 @@
 
 //Add Testing Library
 import '@testing-library/cypress/add-commands'
+
+Cypress.Commands.add('getByDataCy', (selector, ...args) => {
+  return cy.get(`[data-cy=${selector}]`, ...args)
+})
+
+Cypress.Commands.add('shouldRenderBanner', () => {
+  cy.get('.slick-slider').within(() => {
+    cy.findByRole('heading', {
+      name: /Heroes of Might and Magic® 3: Complete/i
+    })
+    cy.findByRole('link', { name: /buy now/i })
+
+    cy.get('.slick-dots :nth-child(2) > button').click()
+    cy.wait(500)
+
+    cy.findByRole('heading', {
+      name: /METAL GEAR SOLID/i
+    })
+    cy.findByRole('link', { name: /buy now/i })
+
+    cy.get('.slick-dots :nth-child(3) > button').click()
+    cy.wait(500)
+
+    cy.findByRole('heading', {
+      name: 'Cyberpunk 2077'
+    })
+    cy.findByRole('link', { name: /buy/i })
+  })
+})
+
+Cypress.Commands.add('shouldRenderShowcase', ({ name, highlight = false }) => {
+  cy.getByDataCy(`"${name}"`).within(() => {
+    cy.findByRole('heading', { name }).should('exist')
+
+    cy.getByDataCy('highlight').should(highlight ? 'exist' : 'not.exist')
+
+    if (highlight) {
+      cy.getByDataCy('highlight').within(() => {
+        cy.findByRole('link').should('have.attr', 'href')
+      })
+    }
+
+    cy.getByDataCy('game-card').should('have.length.gt', 0)
+  })
+})

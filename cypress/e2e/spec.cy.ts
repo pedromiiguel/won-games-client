@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe('empty spec', () => {
+describe.skip('empty spec', () => {
   it.skip('passes', () => {
     cy.visit('https://www.google.com')
   })
