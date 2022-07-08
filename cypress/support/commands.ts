@@ -106,3 +106,11 @@ Cypress.Commands.add('shouldBeLessThan', (value) => {
     .then(parseFloat)
     .should('be.lt', value)
 })
+
+Cypress.Commands.add('signUp', (user) => {
+  cy.findByPlaceholderText(/username/i).type(user.username)
+  cy.findByPlaceholderText(/email/i).type(user.email)
+  cy.findByPlaceholderText('Password').type(user.password)
+  cy.findByPlaceholderText('Confirm Password').type(user.password)
+  cy.findByRole('button', { name: /sign up now/i }).click()
+})
