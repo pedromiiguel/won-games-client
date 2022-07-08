@@ -119,8 +119,6 @@ Cypress.Commands.add('signUp', (user: User) => {
 Cypress.Commands.add(
   'signIn',
   (email = 'matheus@email.com', password = '123123') => {
-    cy.url().should('eq', `${Cypress.config().baseUrl}/sign-in`)
-
     cy.findByPlaceholderText(/email/i).type(email)
     cy.findByPlaceholderText('Password').type(password)
     cy.findByRole('button', { name: /sign in now/i }).click()
