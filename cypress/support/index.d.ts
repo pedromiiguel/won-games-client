@@ -16,7 +16,13 @@ type fieldsAttributes = {
 declare namespace Cypress {
   interface Chainable {
     /**
-     * Custom command to check if value is greather than price
+     * Custom command to sign up
+     * @example cy.signIn()
+     */
+    signIn(email?: string, password?: string): Chainable<Element>
+
+    /**
+     * Custom command to sign up
      * @example cy.signUp('selecter)
      */
     signUp(user: User): Chainable<Element>
