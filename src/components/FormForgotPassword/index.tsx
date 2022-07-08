@@ -50,13 +50,14 @@ const FormForgotPassword = () => {
         values
       )
       setSuccess(true)
-      setLoading(false)
     } catch (error: unknown) {
       const err = error as AxiosError
       if (err?.response) {
         //ts-ignore
         setFormError(err?.response.data.message[0].messages[0].message)
       }
+    } finally {
+      setLoading(false)
     }
   }
 
