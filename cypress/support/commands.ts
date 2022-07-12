@@ -39,45 +39,49 @@
 
 //Add Testing Library
 import '@testing-library/cypress/add-commands'
+import 'cypress-plugin-stripe-elements'
 import { User } from './generate'
 
 Cypress.Commands.add('getByDataCy', (selector, ...args) => {
-  return cy.get(`[data-cy=${selector}]`, ...args)
+  return cy.get(`[data-cy="${selector}"]`, ...args)
 })
 
-Cypress.Commands.add('getFields', (fields) => {
-  fields.map(({ label }) => {
-    cy.findByText(label).should('exist')
-  })
+Cypress.Commands.add('signUp', (user: User) => {
+  cy.findByPlaceholderText(/username/i).type(user.username)
+  cy.findByPlaceholderText(/email/i).type(user.email)
+  cy.findByPlaceholderText(/^password/i).type(user.password)
+  cy.findByPlaceholderText(/confirm password/i).type(user.password)
+  cy.findByRole('button', { name: /sign up now/i }).click()
 })
+
+Cypress.Commands.add('signIn', (email = 'e2e@wongames.com', password = '123456') => {
+  cy.findAllByPlaceholderText(/email/i).type(email)
+  cy.findAllByPlaceholderText(/password/i).type(password)
+  cy.findByRole('button', { name: /sign in now/i }).click()
+})
+
 
 Cypress.Commands.add('shouldRenderBanner', () => {
   cy.get('.slick-slider').within(() => {
-    cy.findByRole('heading', {
-      name: /Heroes of Might and Magic® 3: Complete/i
-    })
+    cy.findByRole('heading', { name: /cyberpunk 2077/i })
     cy.findByRole('link', { name: /buy now/i })
 
-    cy.get('.slick-dots :nth-child(2) > button').click()
+    cy.get('.slick-dots > :nth-child(2) > button').click()
     cy.wait(500)
 
-    cy.findByRole('heading', {
-      name: /METAL GEAR SOLID/i
-    })
+    cy.findByRole('heading', { name: /horizon zero dawn/i })
     cy.findByRole('link', { name: /buy now/i })
 
-    cy.get('.slick-dots :nth-child(3) > button').click()
+    cy.get('.slick-dots > :nth-child(3) > button').click()
     cy.wait(500)
 
-    cy.findByRole('heading', {
-      name: 'Cyberpunk 2077'
-    })
-    cy.findByRole('link', { name: /buy/i })
+    cy.findByRole('heading', { name: /huge promotion!/i })
+    cy.findByRole('link', { name: /browse games/i })
   })
 })
 
 Cypress.Commands.add('shouldRenderShowcase', ({ name, highlight = false }) => {
-  cy.getByDataCy(`"${name}"`).within(() => {
+  cy.getByDataCy(name).within(() => {
     cy.findByRole('heading', { name }).should('exist')
 
     cy.getByDataCy('highlight').should(highlight ? 'exist' : 'not.exist')
@@ -92,35 +96,38 @@ Cypress.Commands.add('shouldRenderShowcase', ({ name, highlight = false }) => {
   })
 })
 
+Cypress.Commands.add('getFields', (fields) => {
+  fields.map(({ label }) => {
+    cy.findByText(label).should('exist')
+  })
+})
+
 Cypress.Commands.add('shouldBeGreaterThan', (value) => {
-  cy.findByText(/^\$\d+(\.\d{1,2})?/)
+  cy
+    .findByText(/^\$\d+(\.\d{1,2})?/)
     .invoke('text')
-    .then(($el) => $el.replace('$', ''))
+    .then($el => $el.replace('$', ''))
     .then(parseFloat)
     .should('be.gt', value)
 })
 
 Cypress.Commands.add('shouldBeLessThan', (value) => {
-  cy.findByText(/^\$\d+(\.\d{1,2})?/)
+  cy
+    .findByText(/^\$\d+(\.\d{1,2})?/)
     .invoke('text')
-    .then(($el) => $el.replace('$', ''))
+    .then($el => $el.replace('$', ''))
     .then(parseFloat)
     .should('be.lt', value)
 })
 
-Cypress.Commands.add('signUp', (user: User) => {
-  cy.findByPlaceholderText(/username/i).type(user.username)
-  cy.findByPlaceholderText(/email/i).type(user.email)
-  cy.findByPlaceholderText('Password').type(user.password)
-  cy.findByPlaceholderText('Confirm Password').type(user.password)
-  cy.findByRole('button', { name: /sign up now/i }).click()
+Cypress.Commands.add('addToCartByIndex', (index) => {
+  cy.getByDataCy('game-card').eq(index).within(() => {
+    cy.findByRole('button', { name: /add to cart/i }).click()
+  })
 })
 
-Cypress.Commands.add(
-  'signIn',
-  (email = 'matheus@email.com', password = '123123') => {
-    cy.findByPlaceholderText(/email/i).type(email)
-    cy.findByPlaceholderText('Password').type(password)
-    cy.findByRole('button', { name: /sign in now/i }).click()
-  }
-)
+Cypress.Commands.add('removeFromCartByIndex', (index) => {
+  cy.getByDataCy('game-card').eq(index).within(() => {
+    cy.findByRole('button', { name: /remove from cart/i }).click()
+  })
+})

@@ -16,7 +16,7 @@ import {
 import { FieldErrors, forgotValidate } from 'utils/validations'
 
 import { useState } from 'react'
-import axios, { AxiosError } from 'axios'
+import axios from 'axios'
 
 import { useRouter } from 'next/router'
 
@@ -50,12 +50,8 @@ const FormForgotPassword = () => {
         values
       )
       setSuccess(true)
-    } catch (error: unknown) {
-      const err = error as AxiosError
-      if (err?.response) {
-        //ts-ignore
-        setFormError(err?.response.data.message[0].messages[0].message)
-      }
+    } catch (error) {
+      setFormError(error?.response.data.message[0].messages[0].message)
     } finally {
       setLoading(false)
     }

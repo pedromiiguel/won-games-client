@@ -27,7 +27,7 @@ describe('<CartList />', () => {
     }
 
     render(<CartList hasButton />, { cartProviderProps })
-    expect(screen.getByText(/but it now/i)).toBeInTheDocument()
+    expect(screen.getByText(/buy it now/i)).toBeInTheDocument()
   })
 
   it('should render with button', () => {
