@@ -1,4 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+
 import Button from 'components/Button'
 import TextField from 'components/TextField'
 import Link from 'next/link'
@@ -34,7 +36,6 @@ const FormSignIn = () => {
       })
 
       const errors = signInValidate(values)
-      console.log(result)
 
       if (Object.keys(errors).length) {
         setFieldError(errors)
@@ -44,9 +45,12 @@ const FormSignIn = () => {
 
       setFieldError({})
 
+      // @ts-ignore
       if (result?.url) {
+        // @ts-ignore
         return push(result?.url)
       }
+
       setLoading(false)
       setFormError('username or password is incorrect')
     } catch (error) {

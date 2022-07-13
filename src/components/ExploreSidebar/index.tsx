@@ -37,7 +37,7 @@ const ExploreSidebar = ({
   initialValues = {}
 }: ExploreSidebarProps) => {
   const [values, setValues] = useState(initialValues)
-  console.log({ values })
+
   const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {

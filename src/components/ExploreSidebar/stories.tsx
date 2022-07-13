@@ -6,7 +6,12 @@ import items from './mock'
 export default {
   title: 'ExploreSidebar',
   component: ExploreSidebar,
-  args: { items, onFilter: () => console.log('filter') },
+  args: {
+    items,
+    onFilter: () => {
+      console.log('ok')
+    }
+  },
   parameters: {
     backgrounds: {
       default: 'dark'

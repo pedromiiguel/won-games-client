@@ -13,8 +13,13 @@ import { FieldErrors, signUpValidate } from 'utils/validations'
 import Button from 'components/Button'
 import TextField from 'components/TextField'
 import { FormWrapper, FormLink, FormLoading, FormError } from 'components/Form'
-import { UsersPermissionsRegisterInput } from 'types'
 import { MUTATION_REGISTER } from 'graphql/mutations/register'
+
+type UsersPermissionsRegisterInput = {
+  username: string
+  email: string
+  password: string
+}
 
 const FormSignUp = () => {
   const [formError, setFormError] = useState('')
@@ -44,14 +49,17 @@ const FormSignUp = () => {
   })
 
   const handleInput = (field: string, value: string) => {
-    setValues((prev) => ({ ...prev, [field]: value }))
+    setValues((prev: UsersPermissionsRegisterInput) => ({
+      ...prev,
+      [field]: value
+    }))
   }
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
 
     const errors = signUpValidate(values)
-    console.log(errors)
+
     if (Object.keys(errors).length) {
       setFieldError(errors)
       return
