@@ -14,10 +14,13 @@ export default NextAuth({
         password: { label: 'password', type: 'password' }
       },
       async authorize(credentials) {
-        const { data } = await axios.post('http://localhost:1337/auth/local', {
-          identifier: credentials?.email,
-          password: credentials?.password
-        })
+        const { data } = await axios.post(
+          `${process.env.NEXTAUTH_URL}/auth/local`,
+          {
+            identifier: credentials?.email,
+            password: credentials?.password
+          }
+        )
 
         if (data.user) {
           const user = { ...data.user, jwt: data.jwt }
