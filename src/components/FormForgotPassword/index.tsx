@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable react/no-unescaped-entities */
 import Button from 'components/Button'
 import TextField from 'components/TextField'
@@ -51,6 +52,7 @@ const FormForgotPassword = () => {
       )
       setSuccess(true)
     } catch (error) {
+      //@ts-ignore
       setFormError(error?.response.data.message[0].messages[0].message)
     } finally {
       setLoading(false)

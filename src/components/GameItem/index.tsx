@@ -12,7 +12,7 @@ export type PaymentInfo = {
 
 export type GameItemProps = {
   id: string
-  img: string
+  img: string | null
   title: string
   price: string
   downloadLink?: string
@@ -32,9 +32,12 @@ const GameItem = ({
   return (
     <S.Wrapper data-cy="game-item">
       <S.GameContent>
-        <S.ImageBox>
-          <img src={img} alt={title} />
-        </S.ImageBox>
+        {!!img && (
+          <S.ImageBox>
+            <img src={img} alt={title} />
+          </S.ImageBox>
+        )}
+
         <S.Content>
           <S.Title>
             {title}
