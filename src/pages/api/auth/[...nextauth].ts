@@ -15,7 +15,7 @@ export default NextAuth({
       },
       async authorize(credentials) {
         const { data } = await axios.post(
-          `${process.env.NEXTAUTH_URL}/auth/local`,
+          `${process.env.NEXT_PUBLIC_API_URL}/auth/local`,
           {
             identifier: credentials?.email,
             password: credentials?.password
