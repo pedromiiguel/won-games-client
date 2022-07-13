@@ -19,10 +19,11 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "useUnknownInCatchVariables": false
+    // "useUnknownInCatchVariables": false
   },
   "exclude": [
-    "node_modules", "cypress"
+    "node_modules",
+    "cypress"
   ],
   "include": [
     "next-env.d.ts",

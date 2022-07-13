@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import styled, { css, DefaultTheme } from 'styled-components'
 import { TextFieldProps } from '.'
 
@@ -32,7 +33,7 @@ export const Icon = styled.div<IconPositionProps>`
     }
   `}
 `
-
+//@ts-ignore
 export const Input = styled.input<IconPositionProps>`
   ${({ theme, iconPosition }) => css`
     color: ${theme.colors.black};
@@ -71,6 +72,7 @@ export const Label = styled.label`
 `
 
 const wrapperModifiers = {
+  //@ts-ignore
   disabled: (theme: DefaultTheme) => css`
     ${Label},
     ${Input},
@@ -100,6 +102,7 @@ const wrapperModifiers = {
   `
 }
 
+//@ts-ignore
 export const Wrapper = styled.div<WrapperProps>`
   ${({ theme, disabled, error }) => css`
     ${disabled && wrapperModifiers.disabled(theme)}

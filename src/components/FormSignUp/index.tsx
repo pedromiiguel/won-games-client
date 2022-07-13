@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { useState } from 'react'
 import Link from 'next/link'
 import {
@@ -34,6 +35,7 @@ const FormSignUp = () => {
   const [createUser, { error, loading }] = useMutation(MUTATION_REGISTER, {
     onError: (err) =>
       setFormError(
+        // @ts-ignore
         err?.graphQLErrors[0]?.extensions?.exception.data.message[0].messages[0]
           .message
       ),
