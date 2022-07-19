@@ -1,11 +1,38 @@
+<h1 align="center">
+    <img alt="Won Games" title="Won Games" src=".github/logo.svg" width="220px" color="#fff" />
+</h1>
 
-![React Avançado](https://raw.githubusercontent.com/React-Avancado/boilerplate/master/public/img/logo-gh.svg)
+<p align="center">
+  <a href="#-sobre">Sobre</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-layout">Layout</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-como-executar-o-projeto">Como executar</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-licença">Licença</a>
+</p>
 
-This is a [Next.js](https://nextjs.org/) boilerplate to be used in a course called [React Avançado](https://reactavancado.com.br/).
-![ci](https://github.com/React-Avancado/boilerplate/workflows/ci/badge.svg)
-## What is inside?
+<p align="center">
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/pedromiiguel/won-games-client">
 
-This project uses lot of stuff as:
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/pedromiiguel/won-games-client">
+
+  <a href="https://github.com/pedromiiguel/won-games-client/commits/master">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/pedromiiguel/won-games-client">
+  </a>
+
+   <a href="https://github.com/pedromiiguel/won-games-client/stargazers">
+    <img alt="Stargazers" src="https://img.shields.io/github/stars/pedromiiguel/Letmeask?style=social">
+  </a>
+</p>
+
+<br/>
+
+<h1 align="center">
+     <img alt="Won Games" title="Won Games" src=".github/won-games.png"/>
+</h1>
+
+## 🚀 Tecnologias
+
+Tecnologias utilizazadas no projeto:
 
 - [TypeScript](https://www.typescriptlang.org/)
 - [NextJS](https://nextjs.org/)
@@ -17,42 +44,43 @@ This project uses lot of stuff as:
 - [Prettier](https://prettier.io/)
 - [Husky](https://github.com/typicode/husky)
 
-## Getting Started
+## Comandos
 
-First, run the development server:
+- `dev`: Rodar a aplicação em `localhost:3000`
+- `build`: cria a versão de compilação de produção
+- `start`: Rodar a aplicação com o código de produção
+- `lint`: executa o linter em todos os componentes e páginas
+- `test`: executa jest para testar todos os componentes e páginas
+- `test:watch`: executa jest no modo de watch
+- `storybook`: roda storybook em `localhost:6006`
+- `build-storybook`: cria a versão de compilação do livro de histórias
+
+## 🔧 Como executar o projeto
+
+### Pré-requisitos
+
+<p> É necessário possuir o Node.js instalado na máquina </p>
+<p>E também possuir um gerenciador de tarefas NPM ou Yarn.</p>
 
 ```bash
-npm run dev
-# or
-yarn dev
+# Clone este repositório
+$ git clone https://github.com/pedromiiguel/won-games-client.git
+
+# Acesse a pasta do projeto no terminal/cmd
+$ cd won-games-client
+
+# Instale as dependências
+$ npm install ou yarn
+
+# Execute a aplicação em modo de desenvolvimento
+$ npm dev ou yarn dev
+
+# O servidor inciará na porta:3000 - acesse http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## :man_astronaut: Autor
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+#### Pedro Miguel
 
-## Commands
-
-- `dev`: runs your application on `localhost:3000`
-- `build`: creates the production build version
-- `start`: starts a simple server with the build production code
-- `lint`: runs the linter in all components and pages
-- `test`: runs jest to test all components and pages
-- `test:watch`: runs jest in watch mode
-- `storybook`: runs storybook on `localhost:6006`
-- `build-storybook`: create the build version of storybook
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Git Hub: <a href="https://github.com/pedromiiguel" target="_blank" >@pedromiiguel</a>
+- Linkedin: <a href="https://www.linkedin.com/in/pedro-miiguel" target="_blank" >@pedromiiguel</a>
